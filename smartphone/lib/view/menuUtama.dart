@@ -50,10 +50,10 @@ class MainMenu extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
 
-                // Tombol Kelola Data (CRUD)
+                // Tombol Kelola Data (CRUD) - White/Light button
                 SizedBox(
                   width: 280,
-                  height: 55,
+                  height: 50,
                   child: ElevatedButton.icon(
                     onPressed:
                         () => Navigator.push(
@@ -62,46 +62,28 @@ class MainMenu extends StatelessWidget {
                             builder: (_) => const SmartphoneListPage(),
                           ),
                         ),
-                    icon: const Icon(Icons.storage, size: 24),
+                    icon: const Icon(Icons.edit_note, size: 20),
                     label: const Text(
                       "Kelola Data (CRUD)",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 14),
                     ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black87,
+                      elevation: 2,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(25),
+                        side: BorderSide(color: Colors.grey.shade300),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
 
-                // Divider dengan label
-                Row(
-                  children: [
-                    const Expanded(child: Divider()),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        "PROSES PERHITUNGAN",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const Expanded(child: Divider()),
-                  ],
-                ),
-                const SizedBox(height: 16),
-
-                // Tombol Hitung & Simpan VIKOR
+                // Tombol Hitung & Simpan VIKOR - Orange button
                 SizedBox(
                   width: 280,
-                  height: 55,
+                  height: 50,
                   child: ElevatedButton.icon(
                     onPressed:
                         () => Navigator.push(
@@ -110,74 +92,27 @@ class MainMenu extends StatelessWidget {
                             builder: (_) => const VikorProsesPage(),
                           ),
                         ),
-                    icon: const Icon(Icons.sync, size: 24),
+                    icon: const Icon(Icons.play_arrow, size: 20),
                     label: const Text(
                       "Hitung & Simpan VIKOR",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 14),
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
                       foregroundColor: Colors.white,
+                      elevation: 2,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 12),
 
-                // Tombol Hitung & Simpan WP
+                // Tombol Ranking Metode WP - Light blue button
                 SizedBox(
                   width: 280,
-                  height: 55,
-                  child: ElevatedButton.icon(
-                    onPressed:
-                        () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const WpProsesPage(),
-                          ),
-                        ),
-                    icon: const Icon(Icons.flash_on, size: 24),
-                    label: const Text(
-                      "Hitung & Simpan WP",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-
-                // Divider dengan label
-                Row(
-                  children: [
-                    const Expanded(child: Divider()),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        "LIHAT RANKING",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const Expanded(child: Divider()),
-                  ],
-                ),
-                const SizedBox(height: 16),
-
-                // Tombol Lihat Ranking WP
-                SizedBox(
-                  width: 280,
-                  height: 55,
+                  height: 50,
                   child: ElevatedButton.icon(
                     onPressed:
                         () => Navigator.push(
@@ -186,26 +121,28 @@ class MainMenu extends StatelessWidget {
                             builder: (_) => const RankingWPPage(),
                           ),
                         ),
-                    icon: const Icon(Icons.bar_chart, size: 24),
+                    icon: const Icon(Icons.bar_chart, size: 20),
                     label: const Text(
                       "Ranking Metode WP",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 14),
                     ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue[100],
-                      foregroundColor: Colors.blue[900],
+                      backgroundColor: Colors.blue[50],
+                      foregroundColor: Colors.blue[800],
+                      elevation: 2,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(25),
+                        side: BorderSide(color: Colors.blue.shade200),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 12),
 
-                // Tombol Lihat Ranking VIKOR
+                // Tombol Lihat Ranking VIKOR - Light button
                 SizedBox(
                   width: 280,
-                  height: 55,
+                  height: 50,
                   child: ElevatedButton.icon(
                     onPressed:
                         () => Navigator.push(
@@ -214,16 +151,47 @@ class MainMenu extends StatelessWidget {
                             builder: (_) => const RankingVikorPage(),
                           ),
                         ),
-                    icon: const Icon(Icons.leaderboard, size: 24),
+                    icon: const Icon(Icons.bar_chart, size: 20),
                     label: const Text(
-                      "Ranking Metode VIKOR",
-                      style: TextStyle(fontSize: 16),
+                      "Lihat Ranking VIKOR",
+                      style: TextStyle(fontSize: 14),
                     ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange[100],
-                      foregroundColor: Colors.orange[900],
+                      backgroundColor: Colors.orange[50],
+                      foregroundColor: Colors.orange[800],
+                      elevation: 2,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(25),
+                        side: BorderSide(color: Colors.orange.shade200),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+
+                // Tombol Hitung & Simpan WP - Blue button (at bottom)
+                SizedBox(
+                  width: 280,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    onPressed:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const WpProsesPage(),
+                          ),
+                        ),
+                    icon: const Icon(Icons.flash_on, size: 20),
+                    label: const Text(
+                      "Hitung & Simpan WP",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
                       ),
                     ),
                   ),
