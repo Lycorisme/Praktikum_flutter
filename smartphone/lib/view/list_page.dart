@@ -91,9 +91,7 @@ class _SmartphoneListPageState extends State<SmartphoneListPage> {
               return Card(
                 margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 child: ListTile(
-                  leading: const CircleAvatar(
-                    child: Icon(Icons.phone_android),
-                  ),
+                  leading: const CircleAvatar(child: Icon(Icons.phone_android)),
                   title: Text(
                     hp.namaHp,
                     style: const TextStyle(fontWeight: FontWeight.bold),
@@ -107,36 +105,59 @@ class _SmartphoneListPageState extends State<SmartphoneListPage> {
                     ],
                   ),
                   isThreeLine: true,
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () {
-                      // Konfirmasi sebelum hapus
-                      showDialog(
-                        context: context,
-                        builder: (ctx) => AlertDialog(
-                          title: const Text("Hapus Data"),
-                          content: Text(
-                            "Apakah Anda yakin ingin menghapus ${hp.namaHp}?",
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(ctx),
-                              child: const Text("Batal"),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Tombol Edit
+                      IconButton(
+                        icon: const Icon(Icons.edit, color: Colors.blue),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) =>
+                                      SmartphoneFormPage(smartphone: hp),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(ctx);
-                                _deleteSmartphone(hp.id!);
-                              },
-                              child: const Text(
-                                "Hapus",
-                                style: TextStyle(color: Colors.red),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                          ).then(
+                            (value) => _refreshData(),
+                          ); // Refresh saat kembali
+                        },
+                      ),
+                      // Tombol Hapus
+                      IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        onPressed: () {
+                          // Konfirmasi sebelum hapus
+                          showDialog(
+                            context: context,
+                            builder:
+                                (ctx) => AlertDialog(
+                                  title: const Text("Hapus Data"),
+                                  content: Text(
+                                    "Apakah Anda yakin ingin menghapus ${hp.namaHp}?",
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(ctx),
+                                      child: const Text("Batal"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(ctx);
+                                        _deleteSmartphone(hp.id!);
+                                      },
+                                      child: const Text(
+                                        "Hapus",
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
               );

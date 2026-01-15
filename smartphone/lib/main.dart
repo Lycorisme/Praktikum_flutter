@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartphone/view/list_page.dart';
+import 'package:smartphone/view/menuUtama.dart'; // Import menu utama
 
 void main() {
   runApp(const MyApp());
@@ -11,13 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Smartphone App',
+      title: 'Smartphone SPK',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SmartphoneListPage(), // Menjalankan halaman list
+      home: const MainMenu(), // Menjalankan menu utama
     );
   }
 }

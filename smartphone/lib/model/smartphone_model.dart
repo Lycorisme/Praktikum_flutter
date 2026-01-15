@@ -5,6 +5,7 @@ class Smartphone {
   final double ram;
   final double kamera;
   final double baterai;
+  double? skor; // Field untuk menyimpan hasil perhitungan SPK
 
   Smartphone({
     this.id,
@@ -13,6 +14,7 @@ class Smartphone {
     required this.ram,
     required this.kamera,
     required this.baterai,
+    this.skor,
   });
 
   // Untuk mengubah JSON dari API menjadi objek Flutter
@@ -29,10 +31,10 @@ class Smartphone {
 
   // Untuk mengubah objek Flutter menjadi JSON saat mengirim data ke API
   Map<String, dynamic> toJson() => {
-        "nama_hp": namaHp,
-        "harga": harga,
-        "ram": ram,
-        "kamera": kamera,
-        "baterai": baterai,
-      };
+    "nama_hp": namaHp,
+    "harga": harga,
+    "ram": ram,
+    "kamera": kamera,
+    "baterai": baterai,
+  };
 }

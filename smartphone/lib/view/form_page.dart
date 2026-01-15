@@ -48,7 +48,8 @@ class _SmartphoneFormPageState extends State<SmartphoneFormPage> {
   void _submitData() async {
     if (_formKey.currentState!.validate()) {
       // Membuat objek smartphone dari input user
-      Smartphone newHp = Smartphone(
+      Smartphone hp = Smartphone(
+        id: widget.smartphone?.id, // Penting untuk mode edit
         namaHp: _namaController.text,
         harga: double.parse(_hargaController.text),
         ram: double.parse(_ramController.text),
@@ -57,18 +58,28 @@ class _SmartphoneFormPageState extends State<SmartphoneFormPage> {
       );
 
       // Kirim data ke API Laravel
-      await apiService.addSmartphone(newHp);
+      if (widget.smartphone == null) {
+        // Mode Tambah
+        await apiService.addSmartphone(hp);
+      } else {
+        // Mode Edit - untuk saat ini masih pakai add sesuai modul
+        await apiService.addSmartphone(hp);
+      }
 
       if (!mounted) return;
-      
+
       // Tampilkan snackbar sukses
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Data berhasil disimpan!"),
+        SnackBar(
+          content: Text(
+            widget.smartphone == null
+                ? "Data berhasil ditambahkan!"
+                : "Data berhasil diubah!",
+          ),
           backgroundColor: Colors.green,
         ),
       );
-      
+
       Navigator.pop(context); // Kembali ke halaman daftar
     }
   }
@@ -77,7 +88,9 @@ class _SmartphoneFormPageState extends State<SmartphoneFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tambah Smartphone"),
+        title: Text(
+          widget.smartphone == null ? "Tambah Smartphone" : "Ubah Smartphone",
+        ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Padding(
