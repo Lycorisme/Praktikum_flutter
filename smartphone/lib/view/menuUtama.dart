@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smartphone/view/list_page.dart';
 import 'package:smartphone/view/wp_page.dart';
 import 'package:smartphone/view/vikor_page.dart';
+import 'package:smartphone/view/vikor_proses_page.dart';
+import 'package:smartphone/view/wp_proses_page.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
@@ -26,7 +28,7 @@ class MainMenu extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -74,9 +76,105 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(height: 24),
+
+                // Divider dengan label
+                Row(
+                  children: [
+                    const Expanded(child: Divider()),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        "PROSES PERHITUNGAN",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const Expanded(child: Divider()),
+                  ],
+                ),
                 const SizedBox(height: 16),
 
-                // Tombol Ranking WP
+                // Tombol Hitung & Simpan VIKOR
+                SizedBox(
+                  width: 280,
+                  height: 55,
+                  child: ElevatedButton.icon(
+                    onPressed:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const VikorProsesPage(),
+                          ),
+                        ),
+                    icon: const Icon(Icons.sync, size: 24),
+                    label: const Text(
+                      "Hitung & Simpan VIKOR",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+
+                // Tombol Hitung & Simpan WP
+                SizedBox(
+                  width: 280,
+                  height: 55,
+                  child: ElevatedButton.icon(
+                    onPressed:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const WpProsesPage(),
+                          ),
+                        ),
+                    icon: const Icon(Icons.flash_on, size: 24),
+                    label: const Text(
+                      "Hitung & Simpan WP",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Divider dengan label
+                Row(
+                  children: [
+                    const Expanded(child: Divider()),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        "LIHAT RANKING",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const Expanded(child: Divider()),
+                  ],
+                ),
+                const SizedBox(height: 16),
+
+                // Tombol Lihat Ranking WP
                 SizedBox(
                   width: 280,
                   height: 55,
@@ -102,9 +200,9 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
 
-                // Tombol Ranking VIKOR
+                // Tombol Lihat Ranking VIKOR
                 SizedBox(
                   width: 280,
                   height: 55,
