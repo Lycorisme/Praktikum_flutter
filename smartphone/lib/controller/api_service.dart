@@ -3,9 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:smartphone/model/smartphone_model.dart';
 
 class ApiService {
-  // Jika pakai Emulator Android, ganti localhost menjadi 10.0.2.2
-  final String baseUrl = "http://localhost:8000/api/smartphones";
-  final String apiBaseUrl = "http://localhost:8000/api";
+  // Gunakan IP komputer agar HP bisa akses API
+  // Untuk emulator Android, gunakan 10.0.2.2
+  // Untuk HP fisik, gunakan IP komputer (misal: 172.20.10.11)
+  final String baseUrl = "http://172.20.10.11:8080/api/smartphones";
+  final String apiBaseUrl = "http://172.20.10.11:8080/api";
 
   // Mengambil Data
   Future<List<Smartphone>> getSmartphones() async {
