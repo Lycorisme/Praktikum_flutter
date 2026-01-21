@@ -227,4 +227,81 @@ class SmartphoneController extends Controller
 
         return response()->json($tempResults);
     }
+
+    /**
+     * Bandingkan Hasil WP dan VIKOR dengan Korelasi Spearman
+     */
+    public function bandingkanMetode() {
+        $wp = \DB::table('wp_results')
+            ->join('smartphones', 'wp_results.smartphone_id', '=', 'smartphones.id')
+            ->select('smartphones.nama_hp', 'wp_results.ranking as rank_wp')
+            ->get();
+
+        $vikor = \DB::table('vikor_results')
+            ->select('smartphone_id', 'ranking as rank_vikor')
+            ->get();
+
+        $perbandingan = [];
+        $totalD2 = 0; // Untuk hitung Spearman
+        $n = count($wp);
+
+        foreach ($wp as $w) {
+            // Cari ranking vikor untuk hp yang sama
+            $v = \DB::table('vikor_results')
+                ->where('smartphone_id', 
+                    \DB::table('smartphones')->where('nama_hp', $w->nama_hp)->value('id')
+                )->first();
+
+            $d = $w->rank_wp - $v->ranking; // Selisih peringkat (di)
+            $d2 = pow($d, 2); // d kuadrat
+            $totalD2 += $d2;
+
+            $perbandingan[] = [
+                'nama' => $w->nama_hp,
+                'wp' => $w->rank_wp,
+                'vikor' => $v->ranking,
+                'selisih' => abs($d),
+            ];
+        }
+
+        // Rumus Spearman: 1 - (6 * sum(d^2) / (n * (n^2 - 1)))
+        $koefisien = ($n > 1) ? 1 - ((6 * $totalD2) / ($n * (pow($n, 2) - 1))) : 1;
+
+        return response()->json([
+            'data' => $perbandingan,
+            'spearman' => round($koefisien, 4),
+            'kategori' => $this->kategoriSpearman($koefisien)
+        ]);
+    }
+
+    private function kategoriSpearman($k) {
+        if ($k >= 0.8) return "Sangat Kuat (Konsisten)";
+        if ($k >= 0.6) return "Kuat";
+        if ($k >= 0.4) return "Cukup";
+        return "Lemah (Hasil Berbeda Jauh)";
+    }
+
+    /**
+     * Get VIKOR Ranking untuk Chart
+     */
+    public function getVikorRanking() {
+        $ranking = \DB::table('vikor_results')
+            ->join('smartphones', 'vikor_results.smartphone_id', '=', 'smartphones.id')
+            ->select('smartphones.nama_hp', 'vikor_results.nilai_q as skor', 'vikor_results.ranking')
+            ->orderBy('vikor_results.ranking', 'asc')
+            ->get();
+        return response()->json($ranking);
+    }
+
+    /**
+     * Get WP Ranking untuk Chart
+     */
+    public function getWpRanking() {
+        $ranking = \DB::table('wp_results')
+            ->join('smartphones', 'wp_results.smartphone_id', '=', 'smartphones.id')
+            ->select('smartphones.nama_hp', 'wp_results.nilai_v as skor', 'wp_results.ranking')
+            ->orderBy('wp_results.ranking', 'asc')
+            ->get();
+        return response()->json($ranking);
+    }
 }

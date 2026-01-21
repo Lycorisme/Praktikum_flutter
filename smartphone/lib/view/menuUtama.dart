@@ -4,6 +4,9 @@ import 'package:smartphone/view/wp_page.dart';
 import 'package:smartphone/view/vikor_page.dart';
 import 'package:smartphone/view/vikor_proses_page.dart';
 import 'package:smartphone/view/wp_proses_page.dart';
+import 'package:smartphone/view/uji_page.dart';
+import 'package:smartphone/view/vikor_chart_page.dart';
+import 'package:smartphone/view/wp_chart_page.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
@@ -188,6 +191,91 @@ class MainMenu extends StatelessWidget {
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+
+                // Tombol Uji Validitas Spearman - Indigo button
+                SizedBox(
+                  width: 280,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    onPressed:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const UjiPage()),
+                        ),
+                    icon: const Icon(Icons.analytics, size: 20),
+                    label: const Text(
+                      "Uji Validitas (Spearman)",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.indigo,
+                      foregroundColor: Colors.white,
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+
+                // Tombol Grafik Hasil VIKOR - Teal button
+                SizedBox(
+                  width: 280,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    onPressed:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const VikorChartPage(),
+                          ),
+                        ),
+                    icon: const Icon(Icons.bar_chart, size: 20),
+                    label: const Text(
+                      "Grafik Hasil VIKOR",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal,
+                      foregroundColor: Colors.white,
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+
+                // Tombol Grafik Hasil WP - Purple button
+                SizedBox(
+                  width: 280,
+                  height: 50,
+                  child: ElevatedButton.icon(
+                    onPressed:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const WpChartPage(),
+                          ),
+                        ),
+                    icon: const Icon(Icons.bar_chart, size: 20),
+                    label: const Text(
+                      "Grafik Hasil WP",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.purple,
                       foregroundColor: Colors.white,
                       elevation: 2,
                       shape: RoundedRectangleBorder(
